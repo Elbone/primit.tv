@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+<!-- MASTER -->
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  {% for item in site.data.items %}
+    {% capture path %}svg/icon-{{ item.slug }}.svg{% endcapture %}
+    {% include {{ path }} %}
+  {% endfor %}
+</svg>
+
+<ul id="items">
+  {% for item in site.data.items %}
+    <li class="{{ item.slug}}">
+      <a href="{{ item.href }}" target="_blank" id="link-{{ item.slug }}" {% if item.mailto %}mailto={{ item.mailto }}{% endif %}>
+        <svg class="icon">
+          <use xlink:href="#icon-{{ item.slug }}"></use>
+        </svg>
+        <i>{{ item.label }}</i>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
